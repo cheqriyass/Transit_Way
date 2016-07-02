@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bsf">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/google/bsf.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

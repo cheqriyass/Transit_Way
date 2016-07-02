@@ -1,0 +1,698 @@
+<html>
+<head>
+    <style type="text/css">.gm-style .gm-style-mtc label, .gm-style .gm-style-mtc div {
+        font-weight: 400
+    }</style>
+    <style type="text/css">.gm-style-pbc {
+        transition: opacity ease-in-out;
+        background-color: black;
+        text-align: center
+    }
+
+    .gm-style-pbt {
+        font-size: 22px;
+        color: white;
+        font-family: Roboto, Arial, sans-serif;
+        position: relative;
+        margin: 0;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%)
+    }</style>
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <style type="text/css">.gm-style .gm-style-cc span, .gm-style .gm-style-cc a, .gm-style .gm-style-mtc div {
+        font-size: 10px
+    }</style>
+    <style type="text/css">@media print {
+        .gm-style .gmnoprint, .gmnoprint {
+            display: none
+        }
+    }
+
+    @media screen {
+        .gm-style .gmnoscreen, .gmnoscreen {
+            display: none
+        }
+    }</style>
+    <style type="text/css">.gm-style {
+        font-family: Roboto, Arial, sans-serif;
+        font-size: 11px;
+        font-weight: 400;
+        text-decoration: none
+    }
+
+    .gm-style img {
+        max-width: none
+    }</style>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Carte</title>
+
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
+    <style type="text/css">
+        /*custom font*/
+        @import url(http://fonts.googleapis.com/css?family=Montserrat);
+
+        /*basic reset*/
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            height: 100%;
+            /*background-color: #edeff2;*/
+
+        }
+
+        body {
+            background-color: #fefefe;
+            font-family: montserrat, arial, verdana;
+        }
+
+        #map {
+            margin-top: 20px;
+            margin-bottom: 50px;
+            margin-left: 150px;
+            height: 500px;
+            width: 80%;
+            border: black solid 2px;
+        }
+
+    </style>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps-api-v3/api/js/25/7/common.js"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps-api-v3/api/js/25/7/map.js"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps-api-v3/api/js/25/7/util.js"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps-api-v3/api/js/25/7/marker.js"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps-api-v3/api/js/25/7/geometry.js"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps-api-v3/api/js/25/7/directions.js"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps-api-v3/api/js/25/7/onion.js"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/api/js/AuthenticationService.Authenticate?1shttp%3A%2F%2Flocalhost%3A8089%2Ftransit%2Fcarte&amp;4sAIzaSyAkB3oJ1rKgHxV1vFa3vmOO1cTnNu_imgc%20&amp;callback=_xdc_._aifuh4&amp;token=130432"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/api/js/DirectionsService.Route?4b0&amp;5m4&amp;1m3&amp;1m2&amp;1d31.657011615565295&amp;2d-8.022213578224182&amp;5m5&amp;1m3&amp;1m2&amp;1d31.6548426356952&amp;2d-8.019791543483734&amp;2b1&amp;5m5&amp;1m3&amp;1m2&amp;1d31.65275580096455&amp;2d-8.019719123840332&amp;2b1&amp;5m4&amp;1m3&amp;1m2&amp;1d31.647860459914572&amp;2d-8.020185828208923&amp;6e0&amp;8b1&amp;12sen&amp;23e1&amp;100b0&amp;102b0&amp;key=AIzaSyAkB3oJ1rKgHxV1vFa3vmOO1cTnNu_imgc%20&amp;callback=_xdc_._etbjiw&amp;token=120139"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/api/js/DirectionsService.Route?4b0&amp;5m4&amp;1m3&amp;1m2&amp;1d31.66141334750387&amp;2d-8.028304874897003&amp;5m5&amp;1m3&amp;1m2&amp;1d31.657011615565295&amp;2d-8.022213578224182&amp;2b1&amp;5m5&amp;1m3&amp;1m2&amp;1d31.65299097177251&amp;2d-8.017830848693848&amp;2b1&amp;5m4&amp;1m3&amp;1m2&amp;1d31.64905235307471&amp;2d-8.013947010040283&amp;6e0&amp;8b1&amp;12sen&amp;23e1&amp;100b0&amp;102b0&amp;key=AIzaSyAkB3oJ1rKgHxV1vFa3vmOO1cTnNu_imgc%20&amp;callback=_xdc_._98oodg&amp;token=118905"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/api/js/DirectionsService.Route?4b0&amp;5m4&amp;1m3&amp;1m2&amp;1d31.66653626253612&amp;2d-8.01176905632019&amp;5m5&amp;1m3&amp;1m2&amp;1d31.657271889747744&amp;2d-8.017863035202026&amp;2b1&amp;5m5&amp;1m3&amp;1m2&amp;1d31.65275580096455&amp;2d-8.019719123840332&amp;2b1&amp;5m4&amp;1m3&amp;1m2&amp;1d31.647860459914572&amp;2d-8.020185828208923&amp;6e0&amp;8b1&amp;12sen&amp;23e1&amp;100b0&amp;102b0&amp;key=AIzaSyAkB3oJ1rKgHxV1vFa3vmOO1cTnNu_imgc%20&amp;callback=_xdc_._wft1fr&amp;token=37611"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/api/js/ViewportInfoService.GetViewportInfo?1m6&amp;1m2&amp;1d31.519764895704256&amp;2d-8.300398069360881&amp;2m2&amp;1d31.744491830333242&amp;2d-7.720457592899038&amp;2u13&amp;4sen&amp;5e0&amp;6sm%40354000000&amp;7b0&amp;8e0&amp;9b0&amp;callback=_xdc_._uzbaij&amp;token=98038"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps-api-v3/api/js/25/7/stats.js"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps-api-v3/api/js/25/7/controls.js"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/vt?pb=!1m4!1m3!1i13!2i3911!3i3335!1m4!1m3!1i13!2i3911!3i3336!1m4!1m3!1i13!2i3911!3i3337!1m4!1m3!1i13!2i3912!3i3335!1m4!1m3!1i13!2i3913!3i3335!1m4!1m3!1i13!2i3914!3i3335!1m4!1m3!1i13!2i3915!3i3335!1m4!1m3!1i13!2i3912!3i3336!1m4!1m3!1i13!2i3912!3i3337!1m4!1m3!1i13!2i3913!3i3336!1m4!1m3!1i13!2i3913!3i3337!1m4!1m3!1i13!2i3914!3i3336!1m4!1m3!1i13!2i3914!3i3337!1m4!1m3!1i13!2i3915!3i3336!1m4!1m3!1i13!2i3915!3i3337!2m3!1e0!2sm!3i354023966!3m9!2sen!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e3!12m1!5b1&amp;callback=_xdc_._a2efua&amp;token=47758"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/api/js/ViewportInfoService.GetViewportInfo?1m6&amp;1m2&amp;1d31.586077214381064&amp;2d-8.158377488189558&amp;2m2&amp;1d31.698431591161995&amp;2d-7.872055044134868&amp;2u14&amp;4sen&amp;5e0&amp;6sm%40354000000&amp;7b0&amp;8e0&amp;9b0&amp;callback=_xdc_._qnrch9&amp;token=11786"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/vt?pb=!1m4!1m3!1i14!2i7825!3i6671!1m4!1m3!1i14!2i7826!3i6671!1m4!1m3!1i14!2i7827!3i6671!1m4!1m3!1i14!2i7828!3i6671!1m4!1m3!1i14!2i7829!3i6671!1m4!1m3!1i14!2i7825!3i6672!1m4!1m3!1i14!2i7825!3i6673!1m4!1m3!1i14!2i7826!3i6672!1m4!1m3!1i14!2i7826!3i6673!1m4!1m3!1i14!2i7827!3i6672!1m4!1m3!1i14!2i7827!3i6673!1m4!1m3!1i14!2i7828!3i6672!1m4!1m3!1i14!2i7828!3i6673!1m4!1m3!1i14!2i7829!3i6672!1m4!1m3!1i14!2i7829!3i6673!2m3!1e0!2sm!3i354023966!3m9!2sen!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e3!12m1!5b1&amp;callback=_xdc_._nbxwn3&amp;token=78570"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/api/js/ViewportInfoService.GetViewportInfo?1m6&amp;1m2&amp;1d31.617416728392563&amp;2d-8.090999867736855&amp;2m2&amp;1d31.67359164348771&amp;2d-7.946032344910691&amp;2u15&amp;4sen&amp;5e0&amp;6sm%40354000000&amp;7b0&amp;8e0&amp;9b0&amp;callback=_xdc_._xbb2cj&amp;token=102793"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/vt?pb=!1m4!1m3!1i15!2i15651!3i13343!1m4!1m3!1i15!2i15652!3i13343!1m4!1m3!1i15!2i15653!3i13343!1m4!1m3!1i15!2i15654!3i13343!1m4!1m3!1i15!2i15655!3i13343!1m4!1m3!1i15!2i15656!3i13343!1m4!1m3!1i15!2i15651!3i13344!1m4!1m3!1i15!2i15651!3i13345!1m4!1m3!1i15!2i15652!3i13344!1m4!1m3!1i15!2i15652!3i13345!1m4!1m3!1i15!2i15653!3i13344!1m4!1m3!1i15!2i15653!3i13345!1m4!1m3!1i15!2i15654!3i13344!1m4!1m3!1i15!2i15654!3i13345!1m4!1m3!1i15!2i15655!3i13344!1m4!1m3!1i15!2i15655!3i13345!1m4!1m3!1i15!2i15656!3i13344!1m4!1m3!1i15!2i15656!3i13345!2m3!1e0!2sm!3i354023966!3m9!2sen!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e3!12m1!5b1&amp;callback=_xdc_._6d8idb&amp;token=65218"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/api/js/ViewportInfoService.GetViewportInfo?1m6&amp;1m2&amp;1d31.58631303084777&amp;2d-8.162062759089963&amp;2m2&amp;1d31.698668246448033&amp;2d-7.872113815605417&amp;2u14&amp;4sen&amp;5e0&amp;6sm%40354000000&amp;7b0&amp;8e0&amp;9b0&amp;callback=_xdc_._8nsw2q&amp;token=80125"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/vt?pb=!1m4!1m3!1i14!2i7824!3i6671!1m4!1m3!1i14!2i7825!3i6671!1m4!1m3!1i14!2i7826!3i6671!1m4!1m3!1i14!2i7827!3i6671!1m4!1m3!1i14!2i7828!3i6671!1m4!1m3!1i14!2i7829!3i6671!1m4!1m3!1i14!2i7824!3i6672!1m4!1m3!1i14!2i7824!3i6673!1m4!1m3!1i14!2i7825!3i6672!1m4!1m3!1i14!2i7825!3i6673!1m4!1m3!1i14!2i7826!3i6672!1m4!1m3!1i14!2i7826!3i6673!1m4!1m3!1i14!2i7827!3i6672!1m4!1m3!1i14!2i7827!3i6673!1m4!1m3!1i14!2i7828!3i6672!1m4!1m3!1i14!2i7828!3i6673!1m4!1m3!1i14!2i7829!3i6672!1m4!1m3!1i14!2i7829!3i6673!2m3!1e0!2sm!3i354023966!3m9!2sen!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e3!12m1!5b1&amp;callback=_xdc_._8kdil3&amp;token=86127"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/api/js/ViewportInfoService.GetViewportInfo?1m6&amp;1m2&amp;1d31.6257783950415&amp;2d-8.088545591581578&amp;2m2&amp;1d31.681948850538596&amp;2d-7.943589577395528&amp;2u15&amp;4sen&amp;5e0&amp;6sm%40354000000&amp;7b0&amp;8e0&amp;9b0&amp;callback=_xdc_._p96ur1&amp;token=14542"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/vt?pb=!1m4!1m3!1i15!2i15652!3i13343!1m4!1m3!1i15!2i15653!3i13343!1m4!1m3!1i15!2i15654!3i13343!1m4!1m3!1i15!2i15655!3i13343!1m4!1m3!1i15!2i15656!3i13343!1m4!1m3!1i15!2i15652!3i13344!1m4!1m3!1i15!2i15653!3i13344!1m4!1m3!1i15!2i15654!3i13344!1m4!1m3!1i15!2i15655!3i13344!1m4!1m3!1i15!2i15656!3i13344!2m3!1e0!2sm!3i354023966!3m9!2sen!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e3!12m1!5b1&amp;callback=_xdc_._low2d2&amp;token=4324"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/api/js/ViewportInfoService.GetViewportInfo?1m6&amp;1m2&amp;1d31.59689872338168&amp;2d-8.157428492525696&amp;2m2&amp;1d31.709240030919794&amp;2d-7.867515440814486&amp;2u14&amp;4sen&amp;5e0&amp;6sm%40354000000&amp;7b0&amp;8e0&amp;9b0&amp;callback=_xdc_._9xnb4g&amp;token=57828"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/vt?pb=!1m4!1m3!1i14!2i7825!3i6671!1m4!1m3!1i14!2i7826!3i6671!1m4!1m3!1i14!2i7827!3i6671!1m4!1m3!1i14!2i7828!3i6671!1m4!1m3!1i14!2i7829!3i6671!1m4!1m3!1i14!2i7825!3i6672!1m4!1m3!1i14!2i7826!3i6672!1m4!1m3!1i14!2i7827!3i6672!1m4!1m3!1i14!2i7828!3i6672!1m4!1m3!1i14!2i7829!3i6672!2m3!1e0!2sm!3i354023966!3m9!2sen!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e3!12m1!5b1&amp;callback=_xdc_._623bji&amp;token=120980"></script>
+    <script type="text/javascript" charset="UTF-8"
+            src="https://maps.googleapis.com/maps/api/js/QuotaService.RecordEvent?1shttp%3A%2F%2Flocalhost%3A8089%2Ftransit%2Fcarte&amp;3sAIzaSyAkB3oJ1rKgHxV1vFa3vmOO1cTnNu_imgc%20&amp;5e0&amp;6u1&amp;7s0qjhl5&amp;callback=_xdc_._tlndif&amp;token=64312"></script>
+</head>
+
+
+<body>
+
+
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/transit/home">Transit App</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a href="/transit/home">Home</a></li>
+            <li><a href="/transit/carte">Carte</a></li>
+            <li><a href="/transit/contact.jsp">Contact Us</a></li>
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <span class="glyphicon glyphicon-menu-hamburger"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="/transit/addLigne">Ajouter une ligne</a></li>
+                    <li><a href="/transit/addBus">Ajouter un bus</a></li>
+                    <li><a href="/transit/message">Messages</a></li>
+                    <li><a href="/transit/signout">Sign Out</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+
+<form class="form-horizontal" id="myForm" role="form" action="/transit/carte" method="get">
+
+    <br>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-sm-4"></div>
+            <div class="col-sm-3" style="margin-left: 20px">
+                <div class="form-group">
+                    <select class="form-control" name="ligne" id="ligne" onchange="submitForm()">
+                        <option value="0"> --- Selectionner une ligne ---</option>
+                        <option value="1">1</option>
+                        <option value="12">12</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="33">33</option>
+                        <option value="90">90</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-sm-4"></div>
+            <div class="col-sm-6">
+                <h2>Tous les Lignes</h2>
+
+            </div>
+
+
+        </div>
+    </div>
+
+</form>
+
+
+<div id="map"
+     style="position: relative; overflow: hidden; transform: translateZ(0px); background-color: rgb(229, 227, 223);">
+    <div class="gm-style"
+         style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0;">
+        <div style="position: absolute; left: 0px; top: 0px; overflow: hidden; width: 100%; height: 100%; z-index: 0; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;) 8 8, default;">
+            <div style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, -65, 161);">
+                <div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 100; width: 100%;">
+                    <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
+                        <div aria-hidden="true"
+                             style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;">
+                            <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 517px; top: -176px;"></div>
+                            <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 517px; top: 80px;"></div>
+                            <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 261px; top: -176px;"></div>
+                            <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 261px; top: 80px;"></div>
+                            <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 773px; top: -176px;"></div>
+                            <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 773px; top: 80px;"></div>
+                            <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 5px; top: -176px;"></div>
+                            <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 5px; top: 80px;"></div>
+                            <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 1029px; top: -176px;"></div>
+                            <div style="width: 256px; height: 256px; transform: translateZ(0px); position: absolute; left: 1029px; top: 80px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 101; width: 100%;"></div>
+                <div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 102; width: 100%;"></div>
+                <div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 103; width: 100%;">
+                    <div style="position: absolute; left: 0px; top: 0px; z-index: -1;">
+                        <div aria-hidden="true"
+                             style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;">
+                            <div style="width: 256px; height: 256px; overflow: hidden; transform: translateZ(0px); position: absolute; left: 517px; top: -176px;">
+                                <canvas draggable="false" height="512" width="512"
+                                        style="-webkit-user-select: none; position: absolute; left: 0px; top: 0px; height: 256px; width: 256px;"></canvas>
+                            </div>
+                            <div style="width: 256px; height: 256px; overflow: hidden; transform: translateZ(0px); position: absolute; left: 517px; top: 80px;">
+                                <canvas draggable="false" height="512" width="512"
+                                        style="-webkit-user-select: none; position: absolute; left: 0px; top: 0px; height: 256px; width: 256px;"></canvas>
+                            </div>
+                            <div style="width: 256px; height: 256px; overflow: hidden; transform: translateZ(0px); position: absolute; left: 261px; top: -176px;">
+                                <canvas draggable="false" height="512" width="512"
+                                        style="-webkit-user-select: none; position: absolute; left: 0px; top: 0px; height: 256px; width: 256px;"></canvas>
+                            </div>
+                            <div style="width: 256px; height: 256px; overflow: hidden; transform: translateZ(0px); position: absolute; left: 261px; top: 80px;">
+                                <canvas draggable="false" height="512" width="512"
+                                        style="-webkit-user-select: none; position: absolute; left: 0px; top: 0px; height: 256px; width: 256px;"></canvas>
+                            </div>
+                            <div style="width: 256px; height: 256px; overflow: hidden; transform: translateZ(0px); position: absolute; left: 773px; top: -176px;"></div>
+                            <div style="width: 256px; height: 256px; overflow: hidden; transform: translateZ(0px); position: absolute; left: 773px; top: 80px;"></div>
+                            <div style="width: 256px; height: 256px; overflow: hidden; transform: translateZ(0px); position: absolute; left: 5px; top: -176px;"></div>
+                            <div style="width: 256px; height: 256px; overflow: hidden; transform: translateZ(0px); position: absolute; left: 5px; top: 80px;"></div>
+                            <div style="width: 256px; height: 256px; overflow: hidden; transform: translateZ(0px); position: absolute; left: 1029px; top: -176px;"></div>
+                            <div style="width: 256px; height: 256px; overflow: hidden; transform: translateZ(0px); position: absolute; left: 1029px; top: 80px;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div style="position: absolute; left: 0px; top: 0px; z-index: 0;">
+                    <div aria-hidden="true"
+                         style="position: absolute; left: 0px; top: 0px; z-index: 1; visibility: inherit;">
+                        <div style="transform: translateZ(0px); position: absolute; left: 517px; top: -176px; transition: opacity 200ms ease-out;">
+                            <img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i7827!3i6671!4i256!2m3!1e0!2sm!3i354023966!3m9!2sen!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0!5m1!5f2&amp;token=38461"
+                                 draggable="false" alt=""
+                                 style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                        </div>
+                        <div style="transform: translateZ(0px); position: absolute; left: 517px; top: 80px; transition: opacity 200ms ease-out;">
+                            <img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i7827!3i6672!4i256!2m3!1e0!2sm!3i354023966!3m9!2sen!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0!5m1!5f2&amp;token=95648"
+                                 draggable="false" alt=""
+                                 style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                        </div>
+                        <div style="transform: translateZ(0px); position: absolute; left: 261px; top: -176px; transition: opacity 200ms ease-out;">
+                            <img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i7826!3i6671!4i256!2m3!1e0!2sm!3i354023966!3m9!2sen!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0!5m1!5f2&amp;token=91496"
+                                 draggable="false" alt=""
+                                 style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                        </div>
+                        <div style="transform: translateZ(0px); position: absolute; left: 261px; top: 80px; transition: opacity 200ms ease-out;">
+                            <img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i7826!3i6672!4i256!2m3!1e0!2sm!3i354023966!3m9!2sen!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0!5m1!5f2&amp;token=17612"
+                                 draggable="false" alt=""
+                                 style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                        </div>
+                        <div style="transform: translateZ(0px); position: absolute; left: 5px; top: -176px; transition: opacity 200ms ease-out;">
+                            <img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i7825!3i6671!4i256!2m3!1e0!2sm!3i354023713!3m9!2sen!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0!5m1!5f2&amp;token=108007"
+                                 draggable="false" alt=""
+                                 style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                        </div>
+                        <div style="transform: translateZ(0px); position: absolute; left: 773px; top: -176px; transition: opacity 200ms ease-out;">
+                            <img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i7828!3i6671!4i256!2m3!1e0!2sm!3i354023966!3m9!2sen!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0!5m1!5f2&amp;token=116497"
+                                 draggable="false" alt=""
+                                 style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                        </div>
+                        <div style="transform: translateZ(0px); position: absolute; left: 773px; top: 80px; transition: opacity 200ms ease-out;">
+                            <img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i7828!3i6672!4i256!2m3!1e0!2sm!3i354023966!3m9!2sen!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0!5m1!5f2&amp;token=42613"
+                                 draggable="false" alt=""
+                                 style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                        </div>
+                        <div style="transform: translateZ(0px); position: absolute; left: 5px; top: 80px; transition: opacity 200ms ease-out;">
+                            <img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i7825!3i6672!4i256!2m3!1e0!2sm!3i354023713!3m9!2sen!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0!5m1!5f2&amp;token=34123"
+                                 draggable="false" alt=""
+                                 style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                        </div>
+                        <div style="transform: translateZ(0px); position: absolute; left: 1029px; top: -176px; transition: opacity 200ms ease-out;">
+                            <img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i7829!3i6671!4i256!2m3!1e0!2sm!3i354023089!3m9!2sen!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0!5m1!5f2&amp;token=65007"
+                                 draggable="false" alt=""
+                                 style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                        </div>
+                        <div style="transform: translateZ(0px); position: absolute; left: 1029px; top: 80px; transition: opacity 200ms ease-out;">
+                            <img src="https://maps.googleapis.com/maps/vt?pb=!1m5!1m4!1i14!2i7829!3i6672!4i256!2m3!1e0!2sm!3i354023966!3m9!2sen!3sUS!5e18!12m1!1e47!12m3!1e37!2m1!1ssmartmaps!4e0!5m1!5f2&amp;token=120649"
+                                 draggable="false" alt=""
+                                 style="position: absolute; left: 0px; top: 0px; width: 256px; height: 256px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="position: absolute; left: 0px; top: 0px; z-index: 2; width: 100%; height: 100%; transition-duration: 0.3s; opacity: 0; display: none;"
+                 class="gm-style-pbc"><p class="gm-style-pbt">Use two fingers to move the map</p></div>
+            <div style="position: absolute; left: 0px; top: 0px; z-index: 3; width: 100%; height: 100%;"></div>
+            <div style="position: absolute; left: 0px; top: 0px; z-index: 4; width: 100%; transform-origin: 0px 0px 0px; transform: matrix(1, 0, 0, 1, -65, 161);">
+                <div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 104; width: 100%;"></div>
+                <div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 105; width: 100%;"></div>
+                <div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 106; width: 100%;"></div>
+                <div style="transform: translateZ(0px); position: absolute; left: 0px; top: 0px; z-index: 107; width: 100%;"></div>
+            </div>
+        </div>
+        <div style="margin-left: 5px; margin-right: 5px; z-index: 1000000; position: absolute; left: 0px; bottom: 0px;">
+            <a target="_blank"
+               href="https://maps.google.com/maps?ll=31.652885,-8.011715&amp;z=14&amp;t=m&amp;hl=en&amp;gl=US&amp;mapclient=apiv3"
+               title="Click to see this area on Google Maps"
+               style="position: static; overflow: visible; float: none; display: inline;">
+                <div style="width: 66px; height: 26px; cursor: pointer;"><img
+                        src="https://maps.gstatic.com/mapfiles/api-3/images/google4_hdpi.png" draggable="false"
+                        style="position: absolute; left: 0px; top: 0px; width: 66px; height: 26px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+                </div>
+            </a></div>
+        <div style="padding: 15px 21px; border: 1px solid rgb(171, 171, 171); font-family: Roboto, Arial, sans-serif; color: rgb(34, 34, 34); box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 16px; z-index: 10000002; display: none; width: 256px; height: 148px; position: absolute; left: 399px; top: 158px; background-color: white;">
+            <div style="padding: 0px 0px 10px; font-size: 16px;">Map Data</div>
+            <div style="font-size: 13px;">Map data ©2016 Google</div>
+            <div style="width: 13px; height: 13px; overflow: hidden; position: absolute; opacity: 0.7; right: 12px; top: 12px; z-index: 10000; cursor: pointer;">
+                <img src="https://maps.gstatic.com/mapfiles/api-3/images/mapcnt6.png" draggable="false"
+                     style="position: absolute; left: -2px; top: -336px; width: 59px; height: 492px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+            </div>
+        </div>
+        <div class="gmnoprint" style="z-index: 1000001; position: absolute; right: 167px; bottom: 0px; width: 121px;">
+            <div draggable="false" class="gm-style-cc"
+                 style="-webkit-user-select: none; height: 14px; line-height: 14px;">
+                <div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;">
+                    <div style="width: 1px;"></div>
+                    <div style="width: auto; height: 100%; margin-left: 1px; background-color: rgb(245, 245, 245);"></div>
+                </div>
+                <div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;">
+                    <a style="color: rgb(68, 68, 68); text-decoration: none; cursor: pointer; display: none;">Map
+                        Data</a><span>Map data ©2016 Google</span></div>
+            </div>
+        </div>
+        <div class="gmnoscreen" style="position: absolute; right: 0px; bottom: 0px;">
+            <div style="font-family: Roboto, Arial, sans-serif; font-size: 11px; color: rgb(68, 68, 68); direction: ltr; text-align: right; background-color: rgb(245, 245, 245);">
+                Map data ©2016 Google
+            </div>
+        </div>
+        <div class="gmnoprint gm-style-cc" draggable="false"
+             style="z-index: 1000001; -webkit-user-select: none; height: 14px; line-height: 14px; position: absolute; right: 96px; bottom: 0px;">
+            <div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;">
+                <div style="width: 1px;"></div>
+                <div style="width: auto; height: 100%; margin-left: 1px; background-color: rgb(245, 245, 245);"></div>
+            </div>
+            <div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;">
+                <a href="https://www.google.com/intl/en_US/help/terms_maps.html" target="_blank"
+                   style="text-decoration: none; cursor: pointer; color: rgb(68, 68, 68);">Terms of Use</a></div>
+        </div>
+        <div style="width: 25px; height: 25px; overflow: hidden; display: none; margin: 10px 14px; position: absolute; top: 0px; right: 0px;">
+            <img src="https://maps.gstatic.com/mapfiles/api-3/images/sv5.png" draggable="false"
+                 class="gm-fullscreen-control"
+                 style="position: absolute; left: -52px; top: -86px; width: 164px; height: 112px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px;">
+        </div>
+        <div draggable="false" class="gm-style-cc"
+             style="-webkit-user-select: none; height: 14px; line-height: 14px; position: absolute; right: 0px; bottom: 0px;">
+            <div style="opacity: 0.7; width: 100%; height: 100%; position: absolute;">
+                <div style="width: 1px;"></div>
+                <div style="width: auto; height: 100%; margin-left: 1px; background-color: rgb(245, 245, 245);"></div>
+            </div>
+            <div style="position: relative; padding-right: 6px; padding-left: 6px; font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); white-space: nowrap; direction: ltr; text-align: right; vertical-align: middle; display: inline-block;">
+                <a target="_new" title="Report errors in the road map or imagery to Google"
+                   href="https://www.google.com/maps/@31.6528855,-8.0117148,14z/data=!10m1!1e1!12b1?source=apiv3&amp;rapsrc=apiv3"
+                   style="font-family: Roboto, Arial, sans-serif; font-size: 10px; color: rgb(68, 68, 68); text-decoration: none; position: relative;">Report
+                    a map error</a></div>
+        </div>
+        <div class="gmnoprint gm-bundled-control gm-bundled-control-on-bottom" draggable="false" controlwidth="28"
+             controlheight="93"
+             style="margin: 10px; -webkit-user-select: none; position: absolute; bottom: 107px; right: 28px;">
+            <div class="gmnoprint" controlwidth="28" controlheight="55"
+                 style="position: absolute; left: 0px; top: 38px;">
+                <div draggable="false"
+                     style="-webkit-user-select: none; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-radius: 2px; cursor: pointer; width: 28px; height: 55px; background-color: rgb(255, 255, 255);">
+                    <div title="Zoom in" style="position: relative; width: 28px; height: 27px; left: 0px; top: 0px;">
+                        <div style="overflow: hidden; position: absolute; width: 15px; height: 15px; left: 7px; top: 6px;">
+                            <img src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl_hdpi.png"
+                                 draggable="false"
+                                 style="position: absolute; left: 0px; top: 0px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 120px; height: 54px;">
+                        </div>
+                    </div>
+                    <div style="position: relative; overflow: hidden; width: 67%; height: 1px; left: 16%; top: 0px; background-color: rgb(230, 230, 230);"></div>
+                    <div title="Zoom out" style="position: relative; width: 28px; height: 27px; left: 0px; top: 0px;">
+                        <div style="overflow: hidden; position: absolute; width: 15px; height: 15px; left: 7px; top: 6px;">
+                            <img src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl_hdpi.png"
+                                 draggable="false"
+                                 style="position: absolute; left: 0px; top: -15px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 120px; height: 54px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="gm-svpc" controlwidth="28" controlheight="28"
+                 style="box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-radius: 2px; width: 28px; height: 28px; cursor: url(&quot;https://maps.gstatic.com/mapfiles/openhand_8_8.cur&quot;) 8 8, default; position: absolute; left: 0px; top: 0px; background-color: rgb(255, 255, 255);">
+                <div style="position: absolute; left: 1px; top: 1px;"></div>
+                <div style="position: absolute; left: 1px; top: 1px;">
+                    <div aria-label="Street View Pegman Control"
+                         style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px;">
+                        <img src="https://maps.gstatic.com/mapfiles/api-3/images/cb_scout5_hdpi.png" draggable="false"
+                             style="position: absolute; left: -147px; top: -26px; width: 215px; height: 835px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                    </div>
+                    <div aria-label="Pegman is on top of the Map"
+                         style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px; visibility: hidden;">
+                        <img src="https://maps.gstatic.com/mapfiles/api-3/images/cb_scout5_hdpi.png" draggable="false"
+                             style="position: absolute; left: -147px; top: -52px; width: 215px; height: 835px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                    </div>
+                    <div aria-label="Street View Pegman Control"
+                         style="width: 26px; height: 26px; overflow: hidden; position: absolute; left: 0px; top: 0px; visibility: hidden;">
+                        <img src="https://maps.gstatic.com/mapfiles/api-3/images/cb_scout5_hdpi.png" draggable="false"
+                             style="position: absolute; left: -147px; top: -78px; width: 215px; height: 835px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                    </div>
+                </div>
+            </div>
+            <div class="gmnoprint" controlwidth="28" controlheight="0" style="display: none; position: absolute;">
+                <div title="Rotate map 90 degrees"
+                     style="width: 28px; height: 28px; overflow: hidden; position: absolute; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; cursor: pointer; display: none; background-color: rgb(255, 255, 255);">
+                    <img src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl4_hdpi.png" draggable="false"
+                         style="position: absolute; left: -141px; top: 6px; width: 170px; height: 54px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                </div>
+                <div class="gm-tilt"
+                     style="width: 28px; height: 28px; overflow: hidden; position: absolute; border-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; top: 0px; cursor: pointer; background-color: rgb(255, 255, 255);">
+                    <img src="https://maps.gstatic.com/mapfiles/api-3/images/tmapctrl4_hdpi.png" draggable="false"
+                         style="position: absolute; left: -141px; top: -13px; width: 170px; height: 54px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none;">
+                </div>
+            </div>
+        </div>
+        <div class="gmnoprint"
+             style="margin: 10px; z-index: 0; position: absolute; cursor: pointer; left: 0px; top: 0px;">
+            <div class="gm-style-mtc" style="float: left;">
+                <div draggable="false" title="Show street map"
+                     style="direction: ltr; overflow: hidden; text-align: center; position: relative; color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; -webkit-user-select: none; font-size: 11px; padding: 8px; border-bottom-left-radius: 2px; border-top-left-radius: 2px; -webkit-background-clip: padding-box; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; min-width: 22px; font-weight: 500; background-color: rgb(255, 255, 255); background-clip: padding-box;">
+                    Map
+                </div>
+                <div style="z-index: -1; padding: 2px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; position: absolute; left: 0px; top: 31px; text-align: left; display: none; background-color: white;">
+                    <div draggable="false" title="Show street map with terrain"
+                         style="color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; -webkit-user-select: none; font-size: 11px; padding: 6px 8px 6px 6px; direction: ltr; text-align: left; white-space: nowrap; background-color: rgb(255, 255, 255);">
+                        <span role="checkbox"
+                              style="box-sizing: border-box; position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; border: 1px solid rgb(198, 198, 198); border-radius: 1px; width: 13px; height: 13px; vertical-align: middle; background-color: rgb(255, 255, 255);"><div
+                                style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden; display: none;">
+                            <img src="https://maps.gstatic.com/mapfiles/mv/imgs8.png" draggable="false"
+                                 style="position: absolute; left: -52px; top: -44px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 68px; height: 67px;">
+                        </div></span><label style="vertical-align: middle; cursor: pointer;">Terrain</label></div>
+                </div>
+            </div>
+            <div class="gm-style-mtc" style="float: left;">
+                <div draggable="false" title="Show satellite imagery"
+                     style="direction: ltr; overflow: hidden; text-align: center; position: relative; color: rgb(86, 86, 86); font-family: Roboto, Arial, sans-serif; -webkit-user-select: none; font-size: 11px; padding: 8px; border-bottom-right-radius: 2px; border-top-right-radius: 2px; -webkit-background-clip: padding-box; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; border-left-width: 0px; min-width: 40px; background-color: rgb(255, 255, 255); background-clip: padding-box;">
+                    Satellite
+                </div>
+                <div style="z-index: -1; padding: 2px; border-bottom-left-radius: 2px; border-bottom-right-radius: 2px; box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px; position: absolute; right: 0px; top: 31px; text-align: left; display: none; background-color: white;">
+                    <div draggable="false" title="Show imagery with street names"
+                         style="color: rgb(0, 0, 0); font-family: Roboto, Arial, sans-serif; -webkit-user-select: none; font-size: 11px; padding: 6px 8px 6px 6px; direction: ltr; text-align: left; white-space: nowrap; background-color: rgb(255, 255, 255);">
+                        <span role="checkbox"
+                              style="box-sizing: border-box; position: relative; line-height: 0; font-size: 0px; margin: 0px 5px 0px 0px; display: inline-block; border: 1px solid rgb(198, 198, 198); border-radius: 1px; width: 13px; height: 13px; vertical-align: middle; background-color: rgb(255, 255, 255);"><div
+                                style="position: absolute; left: 1px; top: -2px; width: 13px; height: 11px; overflow: hidden;">
+                            <img src="https://maps.gstatic.com/mapfiles/mv/imgs8.png" draggable="false"
+                                 style="position: absolute; left: -52px; top: -44px; -webkit-user-select: none; border: 0px; padding: 0px; margin: 0px; max-width: none; width: 68px; height: 67px;">
+                        </div></span><label style="vertical-align: middle; cursor: pointer;">Labels</label></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+
+
+    function initMap1() {
+        var directionsService = new google.maps.DirectionsService;
+        directionsDisplay = new google.maps.DirectionsRenderer({
+            polylineOptions: {
+                strokeColor: "red"
+            }
+        });
+        latitude = 31.6345449;
+        longitude = -8.0079382;
+        var cord = {lat: latitude, lng: longitude};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 6,
+            center: cord
+        });
+        directionsDisplay.setMap(map);
+
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+    }
+
+    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+        var waypts = [];
+
+        waypts.push({
+            location: new google.maps.LatLng(31.6548426356952, -8.019791543483734),
+            stopover: true
+        });
+
+
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(31.6548426356952, -8.019791543483734),
+            map: map,
+            title: "BMCI",
+            icon: "/transit/resources/icons/bus.png"
+        });
+
+
+        waypts.push({
+            location: new google.maps.LatLng(31.65275580096455, -8.019719123840332),
+            stopover: true
+        });
+
+
+        var or = new google.maps.LatLng(31.657011615565295, -8.022213578224182);
+        var des = new google.maps.LatLng(31.647860459914572, -8.020185828208923);
+
+        directionsService.route({
+            origin: or,
+            destination: des,
+            waypoints: waypts,
+            optimizeWaypoints: true,
+            travelMode: google.maps.TravelMode.DRIVING
+        }, function (response, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+    }
+
+
+    function initMap() {
+
+
+
+        latitude = 31.6345449;
+        longitude = -8.0079382;
+        var cord = {lat: latitude, lng: longitude};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 13,
+            center: cord
+        });
+
+
+        var directionsService = new google.maps.DirectionsService;
+
+
+        var waypts1 = [];
+        var directionsDisplay = new google.maps.DirectionsRenderer({
+            polylineOptions: {
+                strokeColor: "Blue"
+            }
+        });
+        directionsDisplay.setMap(map);
+
+        var or = new google.maps.LatLng(31.657011615565295, -8.022213578224182);
+
+
+        var marker = new google.maps.Marker({
+            position: or,
+            map: map,
+            title: "BMCI",
+            icon: "/transit/resources/icons/bus.png"
+        });
+
+
+        var myLatlng = new google.maps.LatLng(31.6548426356952, -8.019791543483734);
+
+        waypts1.push({
+            location: myLatlng,
+            stopover: true
+        });
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: "Mcdo",
+            icon: "/transit/resources/icons/bus.png"
+        });
+
+
+        var myLatlng = new google.maps.LatLng(31.65275580096455, -8.019719123840332);
+
+        waypts1.push({
+            location: myLatlng,
+            stopover: true
+        });
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: "Amoud",
+            icon: "/transit/resources/icons/bus.png"
+        });
+
+
+        var des = new google.maps.LatLng(31.647860459914572, -8.020185828208923);
+
+
+        var marker = new google.maps.Marker({
+            position: des,
+            map: map,
+            title: "BMCI",
+            icon: "/transit/resources/icons/bus.png"
+        });
+
+        directionsService.route({
+            origin: or,
+            destination: des,
+            waypoints: waypts1,
+            optimizeWaypoints: true,
+            travelMode: google.maps.TravelMode.DRIVING
+        }, function (response, status) {
+            if (status === google.maps.DirectionsStatus.OK) {
+                directionsDisplay.setDirections(response);
+
+            } else {
+                window.alert('Directions request failed due to ' + status);
+            }
+        });
+
+
+
+    }
+
+
+</script>
+
+<script async="" defer=""
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkB3oJ1rKgHxV1vFa3vmOO1cTnNu_imgc &amp;callback=initMap">
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+<script aria-hidden="true" type="application/x-lastpass" id="hiddenlpsubmitdiv" style="display: none;"></script>
+<script>try {
+    (function () {
+        for (var lastpass_iter = 0; lastpass_iter < document.forms.length; lastpass_iter++) {
+            var lastpass_f = document.forms[lastpass_iter];
+            if (typeof(lastpass_f.lpsubmitorig2) == "undefined") {
+                lastpass_f.lpsubmitorig2 = lastpass_f.submit;
+                if (typeof(lastpass_f.lpsubmitorig2) == 'object') {
+                    continue;
+                }
+                lastpass_f.submit = function () {
+                    var form = this;
+                    var customEvent = document.createEvent("Event");
+                    customEvent.initEvent("lpCustomEvent", true, true);
+                    var d = document.getElementById("hiddenlpsubmitdiv");
+                    if (d) {
+                        for (var i = 0; i < document.forms.length; i++) {
+                            if (document.forms[i] == form) {
+                                if (typeof(d.innerText) != 'undefined') {
+                                    d.innerText = i.toString();
+                                } else {
+                                    d.textContent = i.toString();
+                                }
+                            }
+                        }
+                        d.dispatchEvent(customEvent);
+                    }
+                    form.lpsubmitorig2();
+                }
+            }
+        }
+    })()
+} catch (e) {
+}</script>
+</body>
+</html>
